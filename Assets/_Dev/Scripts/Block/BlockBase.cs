@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using DG.Tweening;
 using Lean.Pool;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class BlockBase : MonoBehaviour
@@ -81,8 +80,7 @@ public class BlockBase : MonoBehaviour
         }).AsyncWaitForCompletion();
 
     }
-
-    [Button]
+    
     public async Task Fall()
     {
         if(!fallable) return;
