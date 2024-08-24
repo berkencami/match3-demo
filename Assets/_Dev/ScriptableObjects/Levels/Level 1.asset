@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edee40013733e534abcc3b70b4d8e1df, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  itemPalette: {fileID: 11400000, guid: 5019ed0a83ccb0b458686808f1a27ef7, type: 2}
+  row: 7
+  column: 7
+  data: '{"Items":[{"row":0,"column":0,"itemType":5},{"row":0,"column":1,"itemType":5},{"row":0,"column":2,"itemType":4},{"row":0,"column":3,"itemType":4},{"row":0,"column":4,"itemType":2},{"row":0,"column":5,"itemType":2},{"row":0,"column":6,"itemType":7},{"row":1,"column":0,"itemType":5},{"row":1,"column":1,"itemType":9},{"row":1,"column":2,"itemType":4},{"row":1,"column":3,"itemType":4},{"row":1,"column":4,"itemType":10},{"row":1,"column":5,"itemType":2},{"row":1,"column":6,"itemType":7},{"row":2,"column":0,"itemType":3},{"row":2,"column":1,"itemType":3},{"row":2,"column":2,"itemType":3},{"row":2,"column":3,"itemType":3},{"row":2,"column":4,"itemType":3},{"row":2,"column":5,"itemType":4},{"row":2,"column":6,"itemType":7},{"row":3,"column":0,"itemType":3},{"row":3,"column":1,"itemType":3},{"row":3,"column":2,"itemType":3},{"row":3,"column":3,"itemType":3},{"row":3,"column":4,"itemType":3},{"row":3,"column":5,"itemType":4},{"row":3,"column":6,"itemType":7},{"row":4,"column":0,"itemType":2},{"row":4,"column":1,"itemType":2},{"row":4,"column":2,"itemType":5},{"row":4,"column":3,"itemType":2},{"row":4,"column":4,"itemType":6},{"row":4,"column":5,"itemType":6},{"row":4,"column":6,"itemType":7},{"row":5,"column":0,"itemType":2},{"row":5,"column":1,"itemType":10},{"row":5,"column":2,"itemType":5},{"row":5,"column":3,"itemType":2},{"row":5,"column":4,"itemType":9},{"row":5,"column":5,"itemType":6},{"row":5,"column":6,"itemType":7},{"row":6,"column":0,"itemType":7},{"row":6,"column":1,"itemType":7},{"row":6,"column":2,"itemType":7},{"row":6,"column":3,"itemType":7},{"row":6,"column":4,"itemType":7},{"row":6,"column":5,"itemType":7},{"row":6,"column":6,"itemType":7}]}'
+  moves: 20
+  goals:
+  - count: 13
+    type: 7
+    sprite: {fileID: 21300000, guid: 5f7a9199770bacf4297ef8974f14e938, type: 3}
+  - count: 13
+    type: 3
+    sprite: {fileID: 21300000, guid: d6795a38d7cb0a8499efd7c6f4eec337, type: 3}

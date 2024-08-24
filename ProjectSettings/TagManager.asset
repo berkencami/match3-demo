@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Booster
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3795756397
+    locked: 0
+  - name: Board
+    uniqueID: 3668792289
+    locked: 0
+  - name: Block
+    uniqueID: 3205273089
+    locked: 0
+  - name: Booster
+    uniqueID: 4231534577
+    locked: 0
+  - name: UI
+    uniqueID: 3163046603
+    locked: 0
+  - name: VFX
+    uniqueID: 3496322411
+    locked: 0
