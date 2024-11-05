@@ -1,66 +1,70 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using _Dev.Scripts.Block;
 using Zenject;
 
-public class GoalManager : Manager
+namespace _Dev.Scripts.Managers
 {
-    [Inject] private LevelManager levelManager;
+    public class GoalManager : Manager
+    {
+        [Inject] private LevelManager _levelManager;
    
-    private readonly List<Goal> currentGoals=new List<Goal>();
-    public Action<BlockType> OnCheckGoals;
+        private readonly List<Goal.Goal> _currentGoals=new List<Goal.Goal>();
+        public Action<BlockType> OnCheckGoals;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        OnCheckGoals += DecreaseGoals;
-    }
+        protected override void Awake()
+        {
+            base.Awake();
+            OnCheckGoals += DecreaseGoals;
+        }
 
-    protected override void OnDestroy()
-    {
-        base.Awake();
-        OnCheckGoals -= DecreaseGoals;
-    }
+        protected override void OnDestroy()
+        {
+            base.Awake();
+            OnCheckGoals -= DecreaseGoals;
+        }
 
-    protected override void LevelInstantiateProcess()
-    {
-        base.LevelInstantiateProcess();
-        CreateGoals();
-    }
+        protected override void LevelInstantiateProcess()
+        {
+            base.LevelInstantiateProcess();
+            CreateGoals();
+        }
     
-    private void CreateGoals()
-    {
-        currentGoals.Clear();
-        foreach (Goal goal in levelManager.currentLevel.goals)
+        private void CreateGoals()
         {
-            Goal newGoal = new Goal()
+            _currentGoals.Clear();
+            foreach (var newGoal in _levelManager.CurrentLevel.goals.Select(goal => new Goal.Goal()
+                     {
+                         Count = goal.Count,
+                         Type = goal.Type,
+                         Sprite = goal.Sprite
+                     }))
             {
-                count = goal.count,
-                type = goal.type,
-                sprite = goal.sprite
-            };
-            currentGoals.Add(newGoal);
+                _currentGoals.Add(newGoal);
+            }
         }
-    }
 
-    private void DecreaseGoals(BlockType blockType)
-    {
-        Goal goal = currentGoals.Find(x => x.type == blockType);
-        if (goal == null) return;
-        goal.count--;
-        if (goal.count == 0)
+        private void DecreaseGoals(BlockType blockType)
         {
-            currentGoals.Remove(goal);
+            var goal = _currentGoals.Find(x => x.Type == blockType);
+            if (goal == null) return;
+            goal.Count--;
+            if (goal.Count == 0)
+            {
+                _currentGoals.Remove(goal);
+            }
         }
-    }
 
-    public bool GoalsCompleted()
-    {
-        return currentGoals.Count == 0;
-    }
+        public bool GoalsCompleted()
+        {
+            return _currentGoals.Count == 0;
+        }
 
-    public List<Goal> GetGoals()
-    {
-        return currentGoals;
-    }
+        public List<Goal.Goal> GetGoals()
+        {
+            return _currentGoals;
+        }
 
+    }
 }

@@ -1,9 +1,13 @@
+using _Dev.Scripts.Block;
 using UnityEngine;
 
-[System.Serializable]
-public class Goal
+namespace _Dev.Scripts.Goal
 {
-   public int count;
-   public BlockType type;
-   public Sprite sprite;
+    [System.Serializable]
+    public class Goal
+    {
+        public int Count;
+        public BlockType Type;
+        public Sprite Sprite;
+    }
 }

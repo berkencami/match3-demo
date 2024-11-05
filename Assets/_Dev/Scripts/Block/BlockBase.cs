@@ -1,93 +1,104 @@
 ﻿using System.Threading.Tasks;
+using _Dev.Scripts.Data;
+using _Dev.Scripts.Managers;
 using DG.Tweening;
 using Lean.Pool;
 using UnityEngine;
 
-public class BlockBase : MonoBehaviour
+namespace _Dev.Scripts.Block
 {
-    [Header("Block Refs")]
-    public BlockType blockType;
-    public ParticleType particleType;
-    private SpriteRenderer spriteRenderer;
-    [SerializeField] private bool fallable;
-    public bool Fallable => fallable;
-    protected GridCell gridCell;
-
-    [Header("Fall Refs")]
-    [SerializeField] private float fallDuration = 0.3f;
-    public bool blasted;
-
-    protected virtual void Awake()
+    public class BlockBase : MonoBehaviour
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
+        [Header("Block Refs")] private bool _blasted;
+        [SerializeField] private BlockType _blockType;
+        [SerializeField] private ParticleType _particleType;
+        private SpriteRenderer _spriteRenderer;
+        [SerializeField] private bool _canFall;
 
-    protected virtual void OnEnable()
-    {
-        blasted = false;
-    }
-    
-    private void OnDisable()
-    {
-        gridCell = null;
-    }
+        protected GridCell.GridCell _gridCell;
 
-    public void SetGrid(GridCell newGrid)
-    {
-        if (newGrid == gridCell)
+        [Header("Fall Refs")] [SerializeField] private float _fallDuration = 0.3f;
+
+        public bool CanFall => _canFall;
+        public BlockType BlockType => _blockType;
+        protected ParticleType ParticleType => _particleType;
+
+        public bool Blasted
         {
-            return;
+            get => _blasted;
+            protected set => _blasted = value;
         }
 
-        GridCell oldCell = gridCell;
-        gridCell = newGrid;
-
-        if (oldCell != null && oldCell.block == this)
+        protected virtual void Awake()
         {
-            oldCell.block = null;
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
-        if (newGrid != null)
+        protected virtual void OnEnable()
         {
-            newGrid.block = this;
-            
+            _blasted = false;
         }
-    }
-    
-    public void SetSpriteLayer()
-    {
-        spriteRenderer.sortingOrder = (int)(transform.position.y*10);
-    }
 
-    public virtual async Task Blast()
-    {
-        if(blasted) return;
-        blasted = true;
-        gridCell.goalManager.OnCheckGoals?.Invoke(blockType);
-        FXManager.instance.PlayParticle(particleType, transform.position, Quaternion.Euler(-90, 0, 0));
-        gridCell = null;
-        LeanPool.Despawn(gameObject);
-        await Task.Yield();
-    }
-
-    public async Task MergeBlock(Transform mergePoint)
-    {
-        gridCell.goalManager.OnCheckGoals?.Invoke(blockType);
-        await transform.DOMove(mergePoint.position, fallDuration).SetEase(Ease.InBack).OnComplete(() =>
+        private void OnDisable()
         {
-            gridCell = null;
+            _gridCell = null;
+        }
+
+        public void SetGrid(GridCell.GridCell newGrid)
+        {
+            if (newGrid == _gridCell)
+            {
+                return;
+            }
+
+            var oldCell = _gridCell;
+            _gridCell = newGrid;
+
+            if (oldCell != null && oldCell.Block == this)
+            {
+                oldCell.SetBlock(null);
+            }
+
+            if (newGrid != null)
+            {
+                newGrid.SetBlock(this);
+            }
+        }
+
+        public void SetSpriteLayer()
+        {
+            _spriteRenderer.sortingOrder = (int)(transform.position.y * 10);
+        }
+
+        public virtual async Task Blast()
+        {
+            if (_blasted) return;
+            _blasted = true;
+            _gridCell.GoalManager.OnCheckGoals?.Invoke(_blockType);
+            FXManager.Instance.PlayParticle(_particleType, transform.position, Quaternion.Euler(-90, 0, 0));
+            _gridCell = null;
             LeanPool.Despawn(gameObject);
-        }).AsyncWaitForCompletion();
+            await Task.Yield();
+        }
 
-    }
-    
-    public async Task Fall()
-    {
-        if(!fallable) return;
-        if(gridCell==null) return;
-        
-        DOTween.Kill(transform,true); 
-        await transform.DOMove(gridCell.transform.position, fallDuration)
-            .OnUpdate(SetSpriteLayer).AsyncWaitForCompletion();
+        public async Task MergeBlock(Transform mergePoint)
+        {
+            _gridCell.GoalManager.OnCheckGoals?.Invoke(_blockType);
+            await transform.DOMove(mergePoint.position, _fallDuration).SetEase(Ease.InBack).OnComplete(() =>
+            {
+                _gridCell = null;
+                LeanPool.Despawn(gameObject);
+            }).AsyncWaitForCompletion();
+        }
+
+        public async Task Fall()
+        {
+            if (!_canFall) return;
+            if (_gridCell == null) return;
+
+            DOTween.Kill(transform, true);
+            await transform.DOMove(_gridCell.transform.position, _fallDuration)
+                .OnUpdate(SetSpriteLayer).AsyncWaitForCompletion();
+        }
     }
 }

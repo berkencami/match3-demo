@@ -12,37 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55e86836673bac4fa20351f008ace11, type: 3}
   m_Name: ParticlesConfig
   m_EditorClassIdentifier: 
-  particles:
-  - particleType: 0
-    prefab: {fileID: 6740760380572384856, guid: 673cfd55dc8a8224db24f897c38a47c5, type: 3}
-    duration: 1
-  - particleType: 1
-    prefab: {fileID: 6740760380572384856, guid: d9100afcbec96fd47a8dc1452bb5c77c, type: 3}
-    duration: 1
-  - particleType: 2
-    prefab: {fileID: 6740760380572384856, guid: 59973d2e31030aa41b1754705c681ed8, type: 3}
-    duration: 1
-  - particleType: 3
-    prefab: {fileID: 6740760380572384856, guid: 265265d2218c3b34eb033fc2fb66823a, type: 3}
-    duration: 1
-  - particleType: 4
-    prefab: {fileID: 6740760380572384856, guid: d0f9a0360835e9c4c8fcf6f87069db95, type: 3}
-    duration: 1
-  - particleType: 5
-    prefab: {fileID: 6740760380572384856, guid: 2cc44493916066547b1b73cbcff9b500, type: 3}
-    duration: 1
-  - particleType: 5
-    prefab: {fileID: 6740760380572384856, guid: 2cc44493916066547b1b73cbcff9b500, type: 3}
-    duration: 1
-  - particleType: 7
-    prefab: {fileID: 8906519984710001244, guid: 7e48016f11f31bf4c8e5aa277e291f37, type: 3}
-    duration: 2
-  - particleType: 8
-    prefab: {fileID: 195900, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
-    duration: 1
-  - particleType: 9
-    prefab: {fileID: 1538970511181307503, guid: 7fe68292917158c42949332b197e242b, type: 3}
-    duration: 1
-  - particleType: 10
-    prefab: {fileID: 165244, guid: 8f6a3d95cdec3f148b48cc4604a41a59, type: 3}
-    duration: 3
+  _particles:
+  - _particleType: 0
+    _prefab: {fileID: 6740760380572384856, guid: 673cfd55dc8a8224db24f897c38a47c5, type: 3}
+    _duration: 1
+  - _particleType: 1
+    _prefab: {fileID: 6740760380572384856, guid: d9100afcbec96fd47a8dc1452bb5c77c, type: 3}
+    _duration: 1
+  - _particleType: 2
+    _prefab: {fileID: 6740760380572384856, guid: 59973d2e31030aa41b1754705c681ed8, type: 3}
+    _duration: 1
+  - _particleType: 3
+    _prefab: {fileID: 6740760380572384856, guid: 265265d2218c3b34eb033fc2fb66823a, type: 3}
+    _duration: 1
+  - _particleType: 4
+    _prefab: {fileID: 6740760380572384856, guid: d0f9a0360835e9c4c8fcf6f87069db95, type: 3}
+    _duration: 1
+  - _particleType: 5
+    _prefab: {fileID: 6740760380572384856, guid: 2cc44493916066547b1b73cbcff9b500, type: 3}
+    _duration: 1
+  - _particleType: 6
+    _prefab: {fileID: 2590951486220795588, guid: fd5246af4a9922c4eb3fa839593f5d6d, type: 3}
+    _duration: 1
+  - _particleType: 7
+    _prefab: {fileID: 8906519984710001244, guid: 7e48016f11f31bf4c8e5aa277e291f37, type: 3}
+    _duration: 3
+  - _particleType: 8
+    _prefab: {fileID: 195900, guid: ec61825cb06be72419bb09eee03af08c, type: 3}
+    _duration: 1
+  - _particleType: 9
+    _prefab: {fileID: 1538970511181307503, guid: 7fe68292917158c42949332b197e242b, type: 3}
+    _duration: 2
+  - _particleType: 10
+    _prefab: {fileID: 165244, guid: 8f6a3d95cdec3f148b48cc4604a41a59, type: 3}
+    _duration: 4

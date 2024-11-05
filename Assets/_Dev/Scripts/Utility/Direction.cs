@@ -1,12 +1,15 @@
-public enum Direction
+namespace _Dev.Scripts.Utility
 {
-    Invalid,
-    Up,
-    Down,
-    Left,
-    Right,
-    UpLeft,
-    UpRight,
-    DownLeft,
-    DownRight
+    public enum Direction
+    {
+        Invalid,
+        Up,
+        Down,
+        Left,
+        Right,
+        UpLeft,
+        UpRight,
+        DownLeft,
+        DownRight
+    }
 }

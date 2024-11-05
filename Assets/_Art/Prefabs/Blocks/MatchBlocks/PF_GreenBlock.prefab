@@ -21,11 +21,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: c2cb863e6b00d60419a6c9d82457517e, type: 3}
     - target: {fileID: 3804977403523706449, guid: 2494477ee8fa142469ad1bec45e3edd4, type: 3}
+      propertyPath: _canFall
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804977403523706449, guid: 2494477ee8fa142469ad1bec45e3edd4, type: 3}
       propertyPath: blockType
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3804977403523706449, guid: 2494477ee8fa142469ad1bec45e3edd4, type: 3}
+      propertyPath: _blockType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804977403523706449, guid: 2494477ee8fa142469ad1bec45e3edd4, type: 3}
       propertyPath: particleType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804977403523706449, guid: 2494477ee8fa142469ad1bec45e3edd4, type: 3}
+      propertyPath: _particleType
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4357248790447618338, guid: 2494477ee8fa142469ad1bec45e3edd4, type: 3}

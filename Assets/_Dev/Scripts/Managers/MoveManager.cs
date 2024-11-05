@@ -1,43 +1,46 @@
 using System;
 using Zenject;
 
-public class MoveManager : Manager
+namespace _Dev.Scripts.Managers
 {
-   [Inject] private LevelManager levelManager;
+    public class MoveManager : Manager
+    {
+        [Inject] private LevelManager _levelManager;
 
-   public Action OnDecreaseMove;
-   private int moveCount;
+        public Action OnDecreaseMove;
+        private int _moveCount;
 
-   protected override void Awake()
-   {
-       base.Awake();
-       OnDecreaseMove += DecreaseMoveCount;
-   }
+        protected override void Awake()
+        {
+            base.Awake();
+            OnDecreaseMove += DecreaseMoveCount;
+        }
 
-   protected override void OnDestroy()
-   {
-       base.OnDestroy();
-       OnDecreaseMove -= DecreaseMoveCount;
-   }
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            OnDecreaseMove -= DecreaseMoveCount;
+        }
 
-   protected override void PostLevelInstantiateProcess()
-   {
-       base.PostLevelInstantiateProcess();
-       moveCount = levelManager.currentLevel.moves;
-   }
+        protected override void PostLevelInstantiateProcess()
+        {
+            base.PostLevelInstantiateProcess();
+            _moveCount = _levelManager.CurrentLevel.moves;
+        }
    
-   private void DecreaseMoveCount()
-   {
-       moveCount--;
-   }
+        private void DecreaseMoveCount()
+        {
+            _moveCount--;
+        }
 
-   public bool GetAnyMove()
-   {
-       return moveCount > 0;
-   }
+        public bool GetAnyMove()
+        {
+            return _moveCount > 0;
+        }
 
-   public int GetMove()
-   {
-       return moveCount;
-   }
+        public int GetMove()
+        {
+            return _moveCount;
+        }
+    }
 }

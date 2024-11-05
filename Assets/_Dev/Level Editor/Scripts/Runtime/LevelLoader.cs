@@ -1,4 +1,7 @@
 ﻿using System.Linq;
+using _Dev.Scripts.Block;
+using _Dev.Scripts.GridCell;
+using _Dev.Scripts.Installers;
 using UnityEngine;
 using Lean.Pool;
 
@@ -20,7 +23,7 @@ namespace LevelEditor
                     offset += new Vector3(-(float)(level.row - 1) / 2, (float)(level.column - 1) / 2, 0.0f);
                     BlockBase block=InstantiateItem(dataPaletteItem.prefab, position, offset).GetComponent<BlockBase>();
                     GridCell grid=InstantiateGrid(position, offset,gridFactory,dataItem,boardManager);
-                    grid.block = block;
+                    grid.SetBlock(block);
                     block.SetGrid(grid);
                     block.SetSpriteLayer();
                 }
@@ -48,7 +51,7 @@ namespace LevelEditor
             instance.transform.position = new Vector3(x, y, z);
             instance.transform.localScale = Vector3.one;
             instance.SetCoords(levelData.row,levelData.column);
-            boardManager.gridCells[levelData.row, levelData.column] = instance;
+            boardManager.GridCells[levelData.row, levelData.column] = instance;
             return instance;
         }
     }

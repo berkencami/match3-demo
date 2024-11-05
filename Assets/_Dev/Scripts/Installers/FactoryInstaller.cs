@@ -1,16 +1,20 @@
+using UnityEngine;
 using Zenject;
 
-public class FactoryInstaller : MonoInstaller
+namespace _Dev.Scripts.Installers
 {
-    public GridCell gridCell;
-
-    public override void InstallBindings()
+    public class FactoryInstaller : MonoInstaller
     {
-        Container.BindFactory<GridCell, GridFactory>().FromComponentInNewPrefab(gridCell).AsSingle().NonLazy();
-    }
+        [SerializeField]private GridCell.GridCell _gridCell;
 
-    public class GridFactory : PlaceholderFactory<GridCell>
-    {
-    }
+        public override void InstallBindings()
+        {
+            Container.BindFactory<GridCell.GridCell, GridFactory>().FromComponentInNewPrefab(_gridCell).AsSingle().NonLazy();
+        }
+
+        public class GridFactory : PlaceholderFactory<GridCell.GridCell>
+        {
+        }
     
+    }
 }

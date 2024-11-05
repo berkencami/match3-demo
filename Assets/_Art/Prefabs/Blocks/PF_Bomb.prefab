@@ -129,8 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db334bbc445e0840b85d8362f6bb4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockType: 8
-  particleType: 8
-  fallable: 1
-  fallDuration: 0.3
-  blasted: 0
+  _blockType: 8
+  _particleType: 8
+  _canFall: 1
+  _fallDuration: 0.3

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using _Dev.Scripts.Goal;
 using UnityEngine;
 
 namespace LevelEditor

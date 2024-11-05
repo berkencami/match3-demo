@@ -1,37 +1,40 @@
 using System;
 using Zenject;
 
-public class PlayerManager : Manager
+namespace _Dev.Scripts.Managers
 {
-    [Inject] private GoalManager goalManager;
-    [Inject] private MoveManager moveManager;
-    [Inject] private InputManager inputManager;
-    public Action OnCheckGame;
-
-    protected override void Awake()
+    public class PlayerManager : Manager
     {
-        base.Awake();
-        OnCheckGame += CheckGame;
-    }
+        [Inject] private GoalManager _goalManager;
+        [Inject] private MoveManager _moveManager;
+        [Inject] private InputManager _inputManager;
+        public Action OnCheckGame;
 
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
-        OnCheckGame -= CheckGame;
-    }
-
-    private void CheckGame()
-    {
-        if (goalManager.GoalsCompleted())
+        protected override void Awake()
         {
-            gameManager.OnLevelEnd?.Invoke(true);
-            inputManager.OnTouch?.Invoke(false);
-            return;
+            base.Awake();
+            OnCheckGame += CheckGame;
         }
 
-        if (moveManager.GetAnyMove()) return;
-        gameManager.OnLevelEnd?.Invoke(false);
-        inputManager.OnTouch?.Invoke(false);
-    }
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            OnCheckGame -= CheckGame;
+        }
+
+        private void CheckGame()
+        {
+            if (_goalManager.GoalsCompleted())
+            {
+                _gameManager.OnLevelEnd?.Invoke(true);
+                _inputManager.OnTouch?.Invoke(false);
+                return;
+            }
+
+            if (_moveManager.GetAnyMove()) return;
+            _gameManager.OnLevelEnd?.Invoke(false);
+            _inputManager.OnTouch?.Invoke(false);
+        }
     
+    }
 }

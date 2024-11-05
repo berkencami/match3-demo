@@ -1,16 +1,19 @@
 ﻿
-public enum BlockType
+namespace _Dev.Scripts.Block
 {
-    Invalid,
-    Grid,
-    Red,
-    Yellow,
-    Green,
-    Blue,
-    Purple,
-    Obstacle,
-    Bomb,
-    HorizontalRocket,
-    VerticalRocket
+    public enum BlockType
+    {
+        Invalid,
+        Grid,
+        Red,
+        Yellow,
+        Green,
+        Blue,
+        Purple,
+        Obstacle,
+        Bomb,
+        HorizontalRocket,
+        VerticalRocket
     
+    }
 }

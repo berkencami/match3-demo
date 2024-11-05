@@ -1,55 +1,59 @@
 using System;
 using System.Threading.Tasks;
+using _Dev.Scripts.Data;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace _Dev.Scripts.Managers
 {
-    public Action OnGameStart;
-    public Action OnPrepareLevel;
-    public Action OnLevelInstantiate;
-    public Action PostLevelInstantiate;
-    public Action<bool> OnLevelEnd;
-    public Action<GameState> OnStateChange;
-
-    public GameState gameState;
-
-    private void Awake()
+    public class GameManager : MonoBehaviour
     {
-        Application.targetFrameRate = 60;
-        OnLevelEnd += LevelEnd;
-    }
+        public Action OnGameStart;
+        public Action OnPrepareLevel;
+        public Action OnLevelInstantiate;
+        public Action PostLevelInstantiate;
+        public Action<bool> OnLevelEnd;
+        public Action<GameState> OnStateChange;
 
-    private void OnDestroy()
-    {
-        OnLevelEnd -= LevelEnd;
-    }
+        private GameState _gameState;
 
-    private void Start()
-    {
-        OnGameStart?.Invoke();
-    }
+        private void Awake()
+        {
+            Application.targetFrameRate = 60;
+            OnLevelEnd += LevelEnd;
+        }
 
-    private void SetState(GameState newState)
-    {
-        if (gameState == newState) return;
-        gameState = newState;
-        OnStateChange?.Invoke(gameState);
-    }
+        private void OnDestroy()
+        {
+            OnLevelEnd -= LevelEnd;
+        }
 
-    public async void PrepareLevel()
-    {
-        SetState(GameState.Load);
-        OnPrepareLevel?.Invoke();
-        await Task.Yield();
-        OnLevelInstantiate?.Invoke();
-        await Task.Yield();
-        PostLevelInstantiate?.Invoke();
-        SetState(GameState.InGame);
-    }
+        private void Start()
+        {
+            OnGameStart?.Invoke();
+        }
 
-    private void LevelEnd(bool levelStatus)
-    {
-        SetState(levelStatus ? GameState.Success : GameState.Fail);
-    }
+        private void SetState(GameState newState)
+        {
+            if (_gameState == newState) return;
+            _gameState = newState;
+            OnStateChange?.Invoke(_gameState);
+        }
 
+        public async void PrepareLevel()
+        {
+            SetState(GameState.Load);
+            OnPrepareLevel?.Invoke();
+            await Task.Yield();
+            OnLevelInstantiate?.Invoke();
+            await Task.Yield();
+            PostLevelInstantiate?.Invoke();
+            SetState(GameState.InGame);
+        }
+
+        private void LevelEnd(bool levelStatus)
+        {
+            SetState(levelStatus ? GameState.Success : GameState.Fail);
+        }
+
+    }
 }

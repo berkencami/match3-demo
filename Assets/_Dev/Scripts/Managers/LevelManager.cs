@@ -1,47 +1,52 @@
 using System.Collections.Generic;
-using UnityEngine;
+using _Dev.Scripts.Installers;
 using LevelEditor;
+using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
-public class LevelManager : Manager
+namespace _Dev.Scripts.Managers
 {
-    [Inject] public FactoryInstaller.GridFactory gridFactory;
-    [Inject] public BoardManager boardManager;
-
-    [SerializeField] private List<Level> levels;
-    private int currentLevelIndex;
-    public Level currentLevel { get; private set; }
-
-    protected override void Awake()
+    public class LevelManager : Manager
     {
-        base.Awake();
-        currentLevelIndex = PlayerPrefs.GetInt("currentLevelIndex", 0);
-    }
+        [Inject] public FactoryInstaller.GridFactory GridFactory;
+        [Inject] public BoardManager BoardManager;
 
-    protected override void PreLevelInstantiateProcess()
-    {
-        base.PreLevelInstantiateProcess();
-        currentLevel = GetLevel();
-    }
+        [FormerlySerializedAs("levels")] [SerializeField] private List<Level> _levels;
+        private int _currentLevelIndex;
+        public Level CurrentLevel { get; private set; }
 
-    protected override void LevelInstantiateProcess()
-    {
-        base.LevelInstantiateProcess();
-        LevelLoader.LoadLevel(currentLevel, gridFactory, boardManager);
-    }
+        protected override void Awake()
+        {
+            base.Awake();
+            _currentLevelIndex = PlayerPrefs.GetInt("currentLevelIndex", 0);
+        }
 
-    protected override void LevelEndProcess(bool status)
-    {
-        base.LevelEndProcess(status);
-        if (!status) return;
-        currentLevelIndex++;
-        PlayerPrefs.SetInt("currentLevelIndex", currentLevelIndex);
-    }
+        protected override void PreLevelInstantiateProcess()
+        {
+            base.PreLevelInstantiateProcess();
+            CurrentLevel = GetLevel();
+        }
 
-    private Level GetLevel()
-    {
-        int levelIndex = currentLevelIndex;
-        levelIndex %= levels.Count;
-        return levels[levelIndex];
+        protected override void LevelInstantiateProcess()
+        {
+            base.LevelInstantiateProcess();
+            LevelLoader.LoadLevel(CurrentLevel, GridFactory, BoardManager);
+        }
+
+        protected override void LevelEndProcess(bool status)
+        {
+            base.LevelEndProcess(status);
+            if (!status) return;
+            _currentLevelIndex++;
+            PlayerPrefs.SetInt("currentLevelIndex", _currentLevelIndex);
+        }
+
+        private Level GetLevel()
+        {
+            int levelIndex = _currentLevelIndex;
+            levelIndex %= _levels.Count;
+            return _levels[levelIndex];
+        }
     }
 }

@@ -1,39 +1,44 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using _Dev.Scripts.Data;
+using _Dev.Scripts.Managers;
 using Lean.Pool;
 using UnityEngine;
 
-public class Bomb : BlockBase
+namespace _Dev.Scripts.Block
 {
-   public override async Task Blast()
+   public class Bomb : BlockBase
    {
-      if(blasted) return;
-      FXManager.instance.PlayParticle(particleType, transform.position, Quaternion.Euler(-90, 0, 0));
-      FXManager.instance.PlaySoundFX(SoundType.Bomb);
-      gridCell = null;
-      await ExecuteBooster();
-   }
-
-   private async Task ExecuteBooster()
-   {
-      blasted = true;
-      Collider2D[] grids = Physics2D.OverlapCircleAll(transform.position, 1);
-      List<Task> tasks = new List<Task>();
-      foreach (Collider2D collider in grids)
+      public override async Task Blast()
       {
-         if (collider.TryGetComponent(out GridCell targetGrid))
-         {
-            if (targetGrid.block != null && !targetGrid.block.blasted)
-            {
-               tasks.Add(targetGrid.block.Blast());
-               targetGrid.block = null;
-            }
-           
-         }
-         
+         if(Blasted) return;
+         FXManager.Instance.PlayParticle(ParticleType, transform.position, Quaternion.Euler(-90, 0, 0));
+         FXManager.Instance.PlaySoundFX(SoundType.Bomb);
+         _gridCell = null;
+         await ExecuteBooster();
       }
-      LeanPool.Despawn(gameObject);
-      await Task.WhenAll(tasks);
+
+      private async Task ExecuteBooster()
+      {
+         Blasted = true;
+         Collider2D[] grids = Physics2D.OverlapCircleAll(transform.position, 1);
+         List<Task> tasks = new List<Task>();
+         foreach (Collider2D collider in grids)
+         {
+            if (collider.TryGetComponent(out GridCell.GridCell targetGrid))
+            {
+               if (targetGrid.Block != null && !targetGrid.Block.Blasted)
+               {
+                  tasks.Add(targetGrid.Block.Blast());
+                  targetGrid.SetBlock(null);
+               }
+           
+            }
+         
+         }
+         LeanPool.Despawn(gameObject);
+         await Task.WhenAll(tasks);
      
+      }
    }
 }

@@ -99,7 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56026c96befb4519b027fb696247f6d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBlast: 0
 --- !u!61 &669402020993086638
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -271,7 +270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56026c96befb4519b027fb696247f6d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBlast: 0
 --- !u!61 &6878076889997383495
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -390,11 +388,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0664468437736747b0d8c02ba351314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockType: 9
-  particleType: 7
-  fallable: 1
-  fallDuration: 0.3
-  blasted: 0
-  rocketType: 0
-  partOne: {fileID: 2727617825056485831}
-  partTwo: {fileID: 1034603205560948401}
+  _blockType: 9
+  _particleType: 7
+  _canFall: 1
+  _fallDuration: 0.3
+  _rocketType: 0
+  _partOne: {fileID: 2727617825056485831}
+  _partTwo: {fileID: 1034603205560948401}

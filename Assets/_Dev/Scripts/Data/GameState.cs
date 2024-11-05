@@ -1,8 +1,11 @@
-public enum GameState
+namespace _Dev.Scripts.Data
 {
-   Init,
-   Load,
-   InGame,
-   Success,
-   Fail
+   public enum GameState
+   {
+      Init,
+      Load,
+      InGame,
+      Success,
+      Fail
+   }
 }

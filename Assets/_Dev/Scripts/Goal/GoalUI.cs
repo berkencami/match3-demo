@@ -1,53 +1,60 @@
+using _Dev.Scripts.Block;
+using _Dev.Scripts.Data;
+using _Dev.Scripts.Managers;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using DG.Tweening;
 
-public class GoalUI : MonoBehaviour
+namespace _Dev.Scripts.Goal
 {
-    [SerializeField] private Image goalImage;
-    [SerializeField] private TextMeshProUGUI goalCountText;
-    [SerializeField] private GameObject completeMark;
-    public BlockType blockType;
-    private int goalCount;
-
-    private Vector3 initScale;
-
-    private void Awake()
+    public class GoalUI : MonoBehaviour
     {
-        initScale = goalImage.transform.localScale;
-    }
+        [SerializeField] private Image _goalImage;
+        [SerializeField] private TextMeshProUGUI _goalCountText;
+        [SerializeField] private GameObject _completeMark;
+        [SerializeField] private BlockType _blockType;
+        private int _goalCount;
+        private Vector3 _initScale;
 
-    public void InitializeGoal(Sprite sprite, int count,BlockType type)
-    {
-        goalImage.sprite = sprite;
-        goalCount = count;
-        goalCountText.text = "x" + goalCount;
-        blockType = type;
-        completeMark.gameObject.SetActive(false);
-    }
+        public BlockType BlockType => _blockType;
 
-    public void DecreaseGoal()
-    {
-        if(completeMark.activeSelf) return;
-        goalCount--;
-        if (goalCount <= 0)
+        private void Awake()
         {
-            goalCountText.gameObject.SetActive(false);
-            completeMark.gameObject.SetActive(true);
+            _initScale = _goalImage.transform.localScale;
         }
-        goalCountText.text =  "x" + goalCount;
-        FXManager.instance.PlayParticle(ParticleType.StarExplode, transform.position, Quaternion.identity);
-        PunchTransformAnim(initScale, -0.15f, 0.3f);
-    }
-    
-    private void PunchTransformAnim( Vector3 initScale, float punchForce, float duration)
-    {
-        if (DOTween.IsTweening(goalImage.transform))
-            DOTween.Kill(goalImage.transform);
 
-        goalImage.transform.localScale = initScale;
-        goalImage.transform.DOPunchScale(initScale * punchForce, duration, 1, 0f);
-    }
+        public void InitializeGoal(Sprite sprite, int count, BlockType type)
+        {
+            _goalImage.sprite = sprite;
+            _goalCount = count;
+            _goalCountText.text = "x" + _goalCount;
+            _blockType = type;
+            _completeMark.gameObject.SetActive(false);
+        }
 
+        public void DecreaseGoal()
+        {
+            if (_completeMark.activeSelf) return;
+            _goalCount--;
+            if (_goalCount <= 0)
+            {
+                _goalCountText.gameObject.SetActive(false);
+                _completeMark.gameObject.SetActive(true);
+            }
+
+            _goalCountText.text = "x" + _goalCount;
+            FXManager.Instance.PlayParticle(ParticleType.StarExplode, transform.position, Quaternion.identity);
+            PunchTransformAnim(_initScale, -0.15f, 0.3f);
+        }
+
+        private void PunchTransformAnim(Vector3 initScale, float punchForce, float duration)
+        {
+            if (DOTween.IsTweening(_goalImage.transform))
+                DOTween.Kill(_goalImage.transform);
+
+            _goalImage.transform.localScale = initScale;
+            _goalImage.transform.DOPunchScale(initScale * punchForce, duration, 1, 0f);
+        }
+    }
 }

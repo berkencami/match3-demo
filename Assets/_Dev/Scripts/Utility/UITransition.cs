@@ -1,51 +1,53 @@
-using System;
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 using UnityEngine.UI;
 
-public enum TransitionType
+namespace _Dev.Scripts.Utility
 {
-    Scale,
-    Fade
-}
-
-public class UITransition : MonoBehaviour
-{
-    [SerializeField] private TransitionType transitionType;
-    [SerializeField] private float delay;
-    [SerializeField] private Ease ease;
-    [SerializeField] private float duration;
-    [SerializeField] private float transitionValue;
-    
-    private Image image;
-    private Vector3 initScale;
-    private Color initColor;
-    
-    private void Awake()
+    public enum TransitionType
     {
-        if (transitionType == TransitionType.Fade)
-        {
-            image = GetComponent<Image>();
-            initColor = image.color;
-        }
-        initScale=transform.localScale;
+        Scale,
+        Fade
     }
 
-    private void OnEnable()
+    public class UITransition : MonoBehaviour
     {
-        if (transitionType == TransitionType.Fade)
+        [SerializeField] private TransitionType transitionType;
+        [SerializeField] private float delay;
+        [SerializeField] private Ease ease;
+        [SerializeField] private float duration;
+        [SerializeField] private float transitionValue;
+    
+        private Image image;
+        private Vector3 initScale;
+        private Color initColor;
+    
+        private void Awake()
         {
-            DOTween.Kill(image);
-            initColor.a = 0;
-            image.color = initColor;
-            image.DOFade(transitionValue, duration).SetEase(ease).SetDelay(delay);
+            if (transitionType == TransitionType.Fade)
+            {
+                image = GetComponent<Image>();
+                initColor = image.color;
+            }
+            initScale=transform.localScale;
         }
 
-        if (transitionType == TransitionType.Scale)
+        private void OnEnable()
         {
-            DOTween.Kill(image);
-            transform.localScale=Vector3.zero;
-            transform.DOScale(initScale*transitionValue, duration).SetEase(ease).SetDelay(delay);
+            if (transitionType == TransitionType.Fade)
+            {
+                DOTween.Kill(image);
+                initColor.a = 0;
+                image.color = initColor;
+                image.DOFade(transitionValue, duration).SetEase(ease).SetDelay(delay);
+            }
+
+            if (transitionType == TransitionType.Scale)
+            {
+                DOTween.Kill(image);
+                transform.localScale=Vector3.zero;
+                transform.DOScale(initScale*transitionValue, duration).SetEase(ease).SetDelay(delay);
+            }
         }
     }
 }

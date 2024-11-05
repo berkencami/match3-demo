@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955a26a2f2c5d6a4cbd99a8d5dcba34c, type: 3}
   m_Name: SoundConfig
   m_EditorClassIdentifier: 
-  soundFx:
-  - soundType: 0
-    audioClip: {fileID: 8300000, guid: f2584dc4775dd6e40a4dca08dc77f829, type: 3}
-    volume: 1
-  - soundType: 1
-    audioClip: {fileID: 8300000, guid: c9509329d61419849b5d0a23354a315d, type: 3}
-    volume: 1
-  - soundType: 2
-    audioClip: {fileID: 8300000, guid: 09110610bcd52fe499fe200b9406cc88, type: 3}
-    volume: 1
-  - soundType: 3
-    audioClip: {fileID: 8300000, guid: 429c37029c0cc864ca570b9751cf02db, type: 3}
-    volume: 1
-  - soundType: 4
-    audioClip: {fileID: 8300000, guid: 849cfb7d2e8159d4e84b522dbcb9f517, type: 3}
-    volume: 1
+  _soundFx:
+  - _soundType: 0
+    _audioClip: {fileID: 8300000, guid: f2584dc4775dd6e40a4dca08dc77f829, type: 3}
+    _volume: 1
+  - _soundType: 1
+    _audioClip: {fileID: 8300000, guid: c9509329d61419849b5d0a23354a315d, type: 3}
+    _volume: 1
+  - _soundType: 2
+    _audioClip: {fileID: 8300000, guid: 09110610bcd52fe499fe200b9406cc88, type: 3}
+    _volume: 1
+  - _soundType: 3
+    _audioClip: {fileID: 8300000, guid: 429c37029c0cc864ca570b9751cf02db, type: 3}
+    _volume: 1
+  - _soundType: 4
+    _audioClip: {fileID: 8300000, guid: 849cfb7d2e8159d4e84b522dbcb9f517, type: 3}
+    _volume: 1

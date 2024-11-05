@@ -1,48 +1,51 @@
 using UnityEngine;
 using Zenject;
 
-public class Manager : MonoBehaviour
+namespace _Dev.Scripts.Managers
 {
-    [Inject] protected GameManager gameManager;
+    public class Manager : MonoBehaviour
+    {
+        [Inject] protected GameManager _gameManager;
   
-    protected virtual void Awake()
-    {
-        gameManager.OnGameStart += GameStartProcess;
-        gameManager.OnPrepareLevel += PreLevelInstantiateProcess;
-        gameManager.OnLevelInstantiate += LevelInstantiateProcess;
-        gameManager.PostLevelInstantiate += PostLevelInstantiateProcess;
-        gameManager.OnLevelEnd += LevelEndProcess;
-    }
+        protected virtual void Awake()
+        {
+            _gameManager.OnGameStart += GameStartProcess;
+            _gameManager.OnPrepareLevel += PreLevelInstantiateProcess;
+            _gameManager.OnLevelInstantiate += LevelInstantiateProcess;
+            _gameManager.PostLevelInstantiate += PostLevelInstantiateProcess;
+            _gameManager.OnLevelEnd += LevelEndProcess;
+        }
 
-    protected virtual void OnDestroy()
-    {
-        gameManager.OnGameStart -= GameStartProcess;
-        gameManager.OnPrepareLevel -= PreLevelInstantiateProcess;
-        gameManager.OnLevelInstantiate -= LevelInstantiateProcess;
-        gameManager.PostLevelInstantiate -= PostLevelInstantiateProcess;
-        gameManager.OnLevelEnd -= LevelEndProcess;
-    }
+        protected virtual void OnDestroy()
+        {
+            _gameManager.OnGameStart -= GameStartProcess;
+            _gameManager.OnPrepareLevel -= PreLevelInstantiateProcess;
+            _gameManager.OnLevelInstantiate -= LevelInstantiateProcess;
+            _gameManager.PostLevelInstantiate -= PostLevelInstantiateProcess;
+            _gameManager.OnLevelEnd -= LevelEndProcess;
+        }
 
-    protected virtual void GameStartProcess()
-    {
-    }
+        protected virtual void GameStartProcess()
+        {
+        }
     
-    protected virtual void PreLevelInstantiateProcess()
-    {
+        protected virtual void PreLevelInstantiateProcess()
+        {
      
-    }
+        }
 
-    protected virtual void LevelInstantiateProcess()
-    {
+        protected virtual void LevelInstantiateProcess()
+        {
       
-    }
+        }
     
-    protected virtual void PostLevelInstantiateProcess()
-    {
-    }
+        protected virtual void PostLevelInstantiateProcess()
+        {
+        }
 
-    protected virtual void LevelEndProcess(bool status)
-    {
+        protected virtual void LevelEndProcess(bool status)
+        {
         
+        }
     }
 }

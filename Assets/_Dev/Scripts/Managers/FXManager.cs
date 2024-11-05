@@ -1,76 +1,79 @@
+using _Dev.Scripts.Data;
 using Lean.Pool;
 using UnityEngine;
 
-public class FXManager : Manager
+namespace _Dev.Scripts.Managers
 {
-    public static FXManager instance;
-    [SerializeField] private ParticlesConfig particlesConfig;
-    [SerializeField] private SoundConfig soundConfig;
-    private AudioSource audioSource;
-    
-    protected override void Awake()
+    public class FXManager : Manager
     {
-        base.Awake();
-        Singleton();
-        audioSource = GetComponent<AudioSource>();
-    }
+        public static FXManager Instance;
+        [SerializeField] private ParticlesConfig _particlesConfig;
+        [SerializeField] private SoundConfig _soundConfig;
+        private AudioSource _audioSource;
 
-    protected override void PreLevelInstantiateProcess()
-    {
-        base.PreLevelInstantiateProcess();
-        StopSound();
-    }
-
-    protected override void LevelEndProcess(bool status)
-    {
-        base.LevelEndProcess(status);
-        if (status)
+        protected override void Awake()
         {
-            SuccessFX();
-        }
-    }
-
-    private void Singleton()
-    {
-        if (instance != null)
-        {
-            Destroy(this);
+            base.Awake();
+            Singleton();
+            _audioSource = GetComponent<AudioSource>();
         }
 
-        instance = this;
-    }
-
-    public GameObject PlayParticle(ParticleType particleType, Vector3 pos, Quaternion rot, Transform parent = null)
-    {
-        Particle particle = particlesConfig.particles.Find(p => p.particleType == particleType);
-        GameObject spawnedParticle = LeanPool.Spawn(particle.prefab, pos, rot, parent);
-        if (parent != null)
+        protected override void PreLevelInstantiateProcess()
         {
-            spawnedParticle.transform.localPosition = pos;
+            base.PreLevelInstantiateProcess();
+            StopSound();
         }
 
-        if (spawnedParticle == null) return spawnedParticle;
+        protected override void LevelEndProcess(bool status)
+        {
+            base.LevelEndProcess(status);
+            if (status)
+            {
+                SuccessFX();
+            }
+        }
 
-        LeanPool.Despawn(spawnedParticle, particle.duration);
+        private void Singleton()
+        {
+            if (Instance != null)
+            {
+                Destroy(this);
+            }
 
-        return spawnedParticle;
-    }
+            Instance = this;
+        }
 
-    public void PlaySoundFX(SoundType soundType)
-    {
-        SoundFX soundFx = soundConfig.soundFx.Find(p => p.soundType == soundType);
-        audioSource.PlayOneShot(soundFx.audioClip,soundFx.volume);
-    }
+        public GameObject PlayParticle(ParticleType particleType, Vector3 pos, Quaternion rot, Transform parent = null)
+        {
+            var particle = _particlesConfig.Particles.Find(p => p.ParticleType == particleType);
+            var spawnedParticle = LeanPool.Spawn(particle.Prefab, pos, rot, parent);
+            if (parent != null)
+            {
+                spawnedParticle.transform.localPosition = pos;
+            }
 
-    public void StopSound()
-    {
-        audioSource.Stop();
-    }
+            if (spawnedParticle == null) return spawnedParticle;
 
-    private void SuccessFX()
-    {
-        PlayParticle(ParticleType.Fireworks, Vector3.zero, Quaternion.Euler(-90,0,0));
-        PlaySoundFX(SoundType.Success);
+            LeanPool.Despawn(spawnedParticle, particle.Duration);
+
+            return spawnedParticle;
+        }
+
+        public void PlaySoundFX(SoundType soundType)
+        {
+            var soundFx = _soundConfig.SoundFx.Find(p => p.SoundType == soundType);
+            _audioSource.PlayOneShot(soundFx.AudioClip, soundFx.Volume);
+        }
+
+        public void StopSound()
+        {
+            _audioSource.Stop();
+        }
+
+        private void SuccessFX()
+        {
+            PlayParticle(ParticleType.Fireworks, Vector3.zero, Quaternion.Euler(-90, 0, 0));
+            PlaySoundFX(SoundType.Success);
+        }
     }
 }
-

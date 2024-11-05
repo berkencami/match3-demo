@@ -1,15 +1,19 @@
 using System.Collections.Generic;
+using _Dev.Scripts.Block;
 
-public readonly struct MatchData
+namespace _Dev.Scripts.Data
 {
-    public readonly int size;
-    public readonly BlockType blockType;
-    public readonly List<GridCell> gridCells;
-        
-    public MatchData(int matchSize, List<GridCell> cells, BlockType matchType)
+    public readonly struct MatchData
     {
-        size = matchSize;
-        blockType = matchType;
-        gridCells = cells;
+        public readonly int Size;
+        public readonly BlockType BlockType;
+        public readonly List<GridCell.GridCell> GridCells;
+        
+        public MatchData(int matchSize, List<GridCell.GridCell> cells, BlockType matchType)
+        {
+            Size = matchSize;
+            BlockType = matchType;
+            GridCells = cells;
+        }
     }
 }

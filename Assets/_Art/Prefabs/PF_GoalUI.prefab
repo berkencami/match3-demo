@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 6189591261186867597}
   - component: {fileID: 8487425890924120788}
   m_Layer: 5
-  m_Name: GoalUI
+  m_Name: PF_GoalUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0127939e8f3dd94980b0f1f94ff27ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalImage: {fileID: 6189591261186867597}
-  goalCountText: {fileID: 7613248446022755401}
-  completeMark: {fileID: 2237822165209958685}
-  blockType: 0
+  _goalImage: {fileID: 6189591261186867597}
+  _goalCountText: {fileID: 7613248446022755401}
+  _completeMark: {fileID: 2237822165209958685}
+  _blockType: 0

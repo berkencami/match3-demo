@@ -1,28 +1,29 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FPSCounter : MonoBehaviour
 {
-   [SerializeField] private TextMeshProUGUI text;
-   [SerializeField] private float refreshTime = 0.5f;
-   private float frameCounter;
-   private float timeCounter;
-   private float fps;
+   [FormerlySerializedAs("text")] [SerializeField] private TextMeshProUGUI _text;
+   [FormerlySerializedAs("refreshTime")] [SerializeField] private float _refreshTime = 0.5f;
+   private float _frameCounter;
+   private float _timeCounter;
+   private float _fps;
 
    private void Update()
    {
-      if (timeCounter < refreshTime)
+      if (_timeCounter < _refreshTime)
       {
-         timeCounter += Time.deltaTime;
-         frameCounter++;
+         _timeCounter += Time.deltaTime;
+         _frameCounter++;
       }
       else
       {
-         fps = frameCounter / timeCounter;
-         timeCounter = 0;
-         frameCounter = 0;
+         _fps = _frameCounter / _timeCounter;
+         _timeCounter = 0;
+         _frameCounter = 0;
       }
 
-      text.text = "FPS: " + fps.ToString("0.#");
+      _text.text = "FPS: " + _fps.ToString("0.#");
    }
 }

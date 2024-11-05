@@ -1021,8 +1021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d60a734a84653441a9215771b25d794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 394013175}
-  refreshTime: 0.5
+  _text: {fileID: 394013175}
+  _refreshTime: 0.5
 --- !u!114 &394013175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1772,7 +1772,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2342360b5254084aa8fee7b0877f2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: 0
 --- !u!1 &702993477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,15 +1816,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1dc1748c8455474da0fc56a77bb64d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matchBlocks:
+  _matchBlocks:
   - {fileID: 5948999329803745046, guid: 8e5c7795c98eb0a49bdfe33aacafc4dd, type: 3}
   - {fileID: 1843858603420389468, guid: 0a97fce134739c3408639110afb7e03f, type: 3}
   - {fileID: 5948999329803745046, guid: 4caa0a8aebe5ec748ba4970a33a05103, type: 3}
   - {fileID: 4508240886502662903, guid: 94d4cc4abadb4f04b98e152b33decddf, type: 3}
   - {fileID: 486173240393451711, guid: 9b829755404fa674d9d1eb13dd631260, type: 3}
-  bomb: {fileID: 9150739827025401985, guid: 8cf46290923607a4b91ff772fea74d29, type: 3}
-  verticalRocket: {fileID: 5541906785672945080, guid: 23a1da760fef97f43a4b462231c408cd, type: 3}
-  horizontalRocket: {fileID: 7361252490323966981, guid: f54cdb22e838f204b855dca1b47fb6d2, type: 3}
+  _bomb: {fileID: 9150739827025401985, guid: 8cf46290923607a4b91ff772fea74d29, type: 3}
+  _verticalRocket: {fileID: 5541906785672945080, guid: 23a1da760fef97f43a4b462231c408cd, type: 3}
+  _horizontalRocket: {fileID: 7361252490323966981, guid: f54cdb22e838f204b855dca1b47fb6d2, type: 3}
 --- !u!1 &760178180
 GameObject:
   m_ObjectHideFlags: 0
@@ -2205,10 +2204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5686f3bf11a2b7248bfd5e9c7f05b302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMatchSize: 2
-  matchSizeForVerticalRocket: 5
-  matchSizeForHorizontalRocket: 6
-  matchSizeForBomb: 7
+  _minMatchSize: 2
+  _matchSizeForVerticalRocket: 5
+  _matchSizeForHorizontalRocket: 7
 --- !u!1 &1068038236
 GameObject:
   m_ObjectHideFlags: 0
@@ -2456,8 +2454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f9468617316bf41adbcb1733a7eeba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlesConfig: {fileID: 11400000, guid: 1bdf2d7a49007744ba28d74692310f4c, type: 2}
-  soundConfig: {fileID: 11400000, guid: adf212a49dd3ef6468953adccd3d43b3, type: 2}
+  _particlesConfig: {fileID: 11400000, guid: 1bdf2d7a49007744ba28d74692310f4c, type: 2}
+  _soundConfig: {fileID: 11400000, guid: adf212a49dd3ef6468953adccd3d43b3, type: 2}
 --- !u!82 &1105837959
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2598,8 +2596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7694d7b6dc9b7584abef81979c3a6754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardManager: {fileID: 0}
-  levels:
+  BoardManager: {fileID: 0}
+  _levels:
   - {fileID: 11400000, guid: ec3e6cb63598ecd42b3432996b57cd3c, type: 2}
   - {fileID: 11400000, guid: 4216dfad3a0a63047abc7ac7b0de3807, type: 2}
   - {fileID: 11400000, guid: 0e16af543d3f1194586941dca494572e, type: 2}
@@ -2819,7 +2817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6282405e0b7a91489d206b975768df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridCell: {fileID: 3252205757236890959, guid: dace376781a78104eb60f5e1da7f5eae, type: 3}
+  _gridCell: {fileID: 3252205757236890959, guid: dace376781a78104eb60f5e1da7f5eae, type: 3}
 --- !u!1 &1214568724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3166,8 +3164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52daf13b02450ac49a5557054d589869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillingCells: []
-  board: {fileID: 102911081}
+  _board: {fileID: 102911081}
 --- !u!1 &1327812111
 GameObject:
   m_ObjectHideFlags: 0
@@ -5725,14 +5722,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7721824cdd9a8dc47acb13fb6444f62f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuCanvas: {fileID: 1419645238}
-  inGameCanvas: {fileID: 204216272}
-  winPanel: {fileID: 298211126}
-  failPanel: {fileID: 915221563}
-  moveText: {fileID: 1068038238}
-  goalContainer: {fileID: 760178181}
-  goalUI: {fileID: 8487425890924120788, guid: fa41d758556c87a4598d8e34263a0767, type: 3}
-  playButtonText: {fileID: 1507821782}
+  _menuCanvas: {fileID: 1419645238}
+  _inGameCanvas: {fileID: 204216272}
+  _winPanel: {fileID: 298211126}
+  _failPanel: {fileID: 915221563}
+  _moveText: {fileID: 1068038238}
+  _goalContainer: {fileID: 760178181}
+  _goalUI: {fileID: 8487425890924120788, guid: fa41d758556c87a4598d8e34263a0767, type: 3}
+  _playButtonText: {fileID: 1507821782}
 --- !u!1 &8628734262373959007
 GameObject:
   m_ObjectHideFlags: 0
